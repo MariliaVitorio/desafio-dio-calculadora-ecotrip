@@ -12,7 +12,7 @@ Inspirado pelo **Programa Arboretum**, o projeto busca unir tecnologia, educaç�
 
 🔗 **Repositório:** https://github.com/MariliaVitorio/desafio-dio-calculadora-ecotrip
 
-🔗 **Aplicação:** Em breve (GitHub Pages)
+🔗 **Aplicação:** https://mariliavitorio.github.io/desafio-dio-calculadora-ecotrip/
 
 ---
 
@@ -31,11 +31,11 @@ Inspirado pelo **Programa Arboretum**, o projeto busca unir tecnologia, educaç�
 
 ### Dashboard
 
-![Dashboard](docs/images/dashboard/dashboard-overview.png)
+![Dashboard](docs/images/dashboard/dashboard.png)
 
 ### Página Sobre
 
-![Sobre](docs/images/about/about-mission.png)
+![Sobre](docs/images/about/about.png)
 
 ---
 
