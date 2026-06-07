@@ -1,4 +1,4 @@
-import { TripModal } from "@workspace/api-client-react";
+import type { TripModal } from "@/lib/types";
 
 export const EMISSION_FACTORS: Record<TripModal, number> = {
   walking: 0,
