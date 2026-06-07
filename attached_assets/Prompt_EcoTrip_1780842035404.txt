@@ -1,0 +1,342 @@
+Crie uma aplicação Full Stack chamada:
+
+"EcoTrip Arboretum – Simulador de Impacto Ambiental e Compensação Florestal"
+
+OBJETIVO
+
+Desenvolver uma plataforma web que permita ao usuário calcular a emissão de CO₂ de uma viagem, comparar diferentes meios de transporte e visualizar como compensar esse impacto através da restauração florestal inspirada no Programa Arboretum.
+
+O sistema deve possuir caráter educativo, ambiental e demonstrar boas práticas de desenvolvimento assistido por IA.
+
+--------------------------------------------------
+
+TECNOLOGIAS
+
+Frontend:
+- React
+- JavaScript (não utilizar TypeScript)
+- Tailwind CSS
+- Recharts para gráficos
+
+Backend:
+- Node.js
+- Express
+
+Banco:
+- SQLite
+
+Testes:
+- Jest
+- React Testing Library
+
+--------------------------------------------------
+
+IDENTIDADE VISUAL
+
+Inspirada no Programa Arboretum.
+
+Paleta de cores:
+
+Verde Floresta:
+#2E5E3E
+
+Verde Natural:
+#4F8A5B
+
+Verde Claro:
+#8CC63E
+
+Fundo:
+#F5F7F2
+
+Tom Terroso:
+#A67C52
+
+Texto:
+#2C2C2C
+
+Características visuais:
+
+- Design moderno
+- Sustentabilidade
+- Natureza
+- Florestas
+- Conservação ambiental
+- Layout responsivo
+- Aparência profissional para portfólio
+
+--------------------------------------------------
+
+FUNCIONALIDADE 1
+SIMULAÇÃO DA VIAGEM
+
+Campos:
+
+- Origem
+- Destino
+- Distância em quilômetros
+
+Opção:
+
+☐ Inserir distância manualmente
+
+Caso não seja manual:
+
+Calcular distância automaticamente utilizando latitude e longitude.
+
+--------------------------------------------------
+
+FUNCIONALIDADE 2
+SELEÇÃO DO MODAL
+
+Exibir cards clicáveis com ícones.
+
+Modais:
+
+🚶 Caminhada
+🚲 Bicicleta
+🏍 Motocicleta
+🚗 Carro Gasolina
+🌱 Carro Etanol
+🔋 Carro Elétrico
+🚌 Ônibus
+🚆 Trem
+🚇 Metrô
+✈ Avião
+
+--------------------------------------------------
+
+FUNCIONALIDADE 3
+CÁLCULO DE EMISSÃO
+
+Utilizar fatores médios:
+
+Caminhada = 0
+
+Bicicleta = 0
+
+Metrô = 0.02
+
+Trem = 0.03
+
+Ônibus = 0.09
+
+Motocicleta = 0.11
+
+Carro Gasolina = 0.12
+
+Carro Etanol = 0.06
+
+Carro Elétrico = 0.02
+
+Avião = 0.25
+
+Fórmula:
+
+Emissão CO₂ = Distância × Fator de Emissão
+
+Resultado em:
+
+kg CO₂
+
+--------------------------------------------------
+
+FUNCIONALIDADE 4
+COMPARAÇÃO ENTRE MODAIS
+
+Após o cálculo:
+
+Exibir ranking com todos os modais.
+
+Mostrar:
+
+- Emissão total
+- Economia em relação ao carro a gasolina
+- Percentual de redução
+
+Destacar:
+
+🏆 Opção mais sustentável
+
+--------------------------------------------------
+
+FUNCIONALIDADE 5
+ECOSCORE
+
+Criar pontuação de sustentabilidade:
+
+0 a 100
+
+Classificações:
+
+90-100
+🌳 Guardião da Floresta
+
+70-89
+🌱 Viajante Sustentável
+
+50-69
+🍃 Em Transição
+
+0-49
+⚠ Alto Impacto
+
+Exibir medalha visual.
+
+--------------------------------------------------
+
+FUNCIONALIDADE 6
+COMPENSAÇÃO FLORESTAL
+
+Diferencial inspirado no Programa Arboretum.
+
+Calcular:
+
+Quantidade estimada de mudas necessárias para compensar a emissão.
+
+Considerar:
+
+1 muda nativa = 15 kg CO₂ compensados ao longo do crescimento.
+
+Exemplo:
+
+Emissão:
+60 kg CO₂
+
+Resultado:
+
+São necessárias aproximadamente 4 mudas nativas para compensar essa emissão.
+
+Exibir:
+
+🌳 Quantidade de mudas
+🌳 Área estimada de restauração
+
+Considerar:
+
+1 muda = 4 m² restaurados
+
+--------------------------------------------------
+
+FUNCIONALIDADE 7
+DASHBOARD
+
+Criar gráficos:
+
+1. Emissões por modal
+2. Ranking dos modais
+3. Comparação percentual
+4. Emissão versus compensação
+
+Utilizar Recharts.
+
+--------------------------------------------------
+
+FUNCIONALIDADE 8
+RECOMENDAÇÕES AMBIENTAIS
+
+Gerar sugestões automáticas.
+
+Exemplos:
+
+"Escolher ônibus reduziria suas emissões em 74%."
+
+"Utilizar trem evitaria a emissão de 35 kg de CO₂."
+
+"Você poderia compensar sua viagem com apenas 3 mudas nativas."
+
+--------------------------------------------------
+
+FUNCIONALIDADE 9
+HISTÓRICO
+
+Salvar localmente:
+
+- Data
+- Origem
+- Destino
+- Distância
+- Modal
+- Emissão
+- EcoScore
+- Quantidade de mudas
+
+Permitir:
+
+- Visualizar histórico
+- Excluir registros
+
+--------------------------------------------------
+
+FUNCIONALIDADE 10
+PÁGINA SOBRE
+
+Explicar:
+
+- O que é pegada de carbono
+- Como os cálculos são realizados
+- O conceito de compensação florestal
+- A importância da restauração de ecossistemas
+- Inspiração no Programa Arboretum
+
+Inserir aviso:
+
+"Os cálculos são estimativas educacionais e não substituem inventários oficiais de emissões."
+
+--------------------------------------------------
+
+FUNCIONALIDADE 11
+TESTES AUTOMATIZADOS
+
+Criar:
+
+- Testes unitários dos cálculos
+- Testes de API
+- Testes dos componentes React
+
+Cobrir pelo menos:
+
+- Fórmulas de emissão
+- Cálculo de EcoScore
+- Cálculo de compensação florestal
+
+--------------------------------------------------
+
+FUNCIONALIDADE 12
+DOCUMENTAÇÃO
+
+Gerar README profissional contendo:
+
+- Objetivo do projeto
+- Arquitetura
+- Tecnologias utilizadas
+- Como executar localmente
+- Como executar testes
+- Como realizar deploy
+- Estrutura de pastas
+- Exemplos de uso
+- Capturas de tela
+
+--------------------------------------------------
+
+REQUISITOS DE QUALIDADE
+
+- Código limpo
+- Componentização React
+- Responsividade
+- Boas práticas de JavaScript
+- Separação de responsabilidades
+- Comentários apenas quando necessários
+- Estrutura pronta para portfólio profissional
+
+O resultado deve parecer um produto real de sustentabilidade e educação ambiental, e não apenas uma calculadora simples de CO₂.
+
+Obs: Inclua uma seção chamada:
+
+"Impacto no Programa Arboretum"
+
+Sem afirmar parceria oficial.
+
+Exemplo:
+
+"Se essa emissão fosse compensada por iniciativas de restauração florestal semelhantes às realizadas pelo Programa Arboretum, seriam necessárias aproximadamente X mudas nativas."

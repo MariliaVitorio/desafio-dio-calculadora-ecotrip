@@ -3,13 +3,17 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: EcoTrip Arboretum – CO2 emission simulator and forest compensation API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: trips
+    description: Trip history operations
+  - name: stats
+    description: Statistics and aggregates
 paths:
   /healthz:
     get:
@@ -24,6 +28,95 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /trips:
+    get:
+      operationId: listTrips
+      tags: [trips]
+      summary: List trip history
+      description: Returns all saved trip calculations ordered by date descending
+      responses:
+        "200":
+          description: List of trips
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Trip"
+    post:
+      operationId: createTrip
+      tags: [trips]
+      summary: Save a trip calculation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TripInput"
+      responses:
+        "201":
+          description: Trip saved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Trip"
+        "400":
+          description: Invalid input
+
+  /trips/{id}:
+    delete:
+      operationId: deleteTrip
+      tags: [trips]
+      summary: Delete a trip record
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+        "404":
+          description: Not found
+
+  /trips/stats:
+    get:
+      operationId: getTripStats
+      tags: [stats]
+      summary: Get aggregate trip statistics
+      description: Returns totals and aggregates across all saved trips
+      responses:
+        "200":
+          description: Aggregate stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TripStats"
+
+  /trips/distance:
+    post:
+      operationId: calculateDistance
+      tags: [trips]
+      summary: Calculate distance between two coordinates
+      description: Uses the Haversine formula to compute great-circle distance in km
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DistanceInput"
+      responses:
+        "200":
+          description: Distance in km
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DistanceResult"
+        "400":
+          description: Invalid coordinates
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +127,158 @@ components:
       required:
         - status
 
+    Trip:
+      type: object
+      required:
+        - id
+        - origin
+        - destination
+        - distanceKm
+        - modal
+        - emissionKg
+        - ecoScore
+        - seedlings
+        - restorationAreaM2
+        - createdAt
+      properties:
+        id:
+          type: integer
+        origin:
+          type: string
+        destination:
+          type: string
+        distanceKm:
+          type: number
+        modal:
+          type: string
+          enum:
+            - walking
+            - bicycle
+            - motorcycle
+            - car_gasoline
+            - car_ethanol
+            - car_electric
+            - bus
+            - train
+            - metro
+            - airplane
+        emissionKg:
+          type: number
+        ecoScore:
+          type: integer
+        seedlings:
+          type: integer
+        restorationAreaM2:
+          type: number
+        createdAt:
+          type: string
+
+    TripInput:
+      type: object
+      required:
+        - origin
+        - destination
+        - distanceKm
+        - modal
+        - emissionKg
+        - ecoScore
+        - seedlings
+        - restorationAreaM2
+      properties:
+        origin:
+          type: string
+          minLength: 1
+        destination:
+          type: string
+          minLength: 1
+        distanceKm:
+          type: number
+          minimum: 0
+        modal:
+          type: string
+          enum:
+            - walking
+            - bicycle
+            - motorcycle
+            - car_gasoline
+            - car_ethanol
+            - car_electric
+            - bus
+            - train
+            - metro
+            - airplane
+        emissionKg:
+          type: number
+        ecoScore:
+          type: integer
+        seedlings:
+          type: integer
+        restorationAreaM2:
+          type: number
+
+    TripStats:
+      type: object
+      required:
+        - totalTrips
+        - totalEmissionKg
+        - totalSeedlings
+        - totalDistanceKm
+        - averageEcoScore
+        - mostUsedModal
+        - emissionByModal
+      properties:
+        totalTrips:
+          type: integer
+        totalEmissionKg:
+          type: number
+        totalSeedlings:
+          type: integer
+        totalDistanceKm:
+          type: number
+        averageEcoScore:
+          type: number
+        mostUsedModal:
+          type: ["string", "null"]
+        emissionByModal:
+          type: array
+          items:
+            $ref: "#/components/schemas/ModalEmissionStat"
+
+    ModalEmissionStat:
+      type: object
+      required:
+        - modal
+        - totalEmissionKg
+        - tripCount
+      properties:
+        modal:
+          type: string
+        totalEmissionKg:
+          type: number
+        tripCount:
+          type: integer
+
+    DistanceInput:
+      type: object
+      required:
+        - originLat
+        - originLng
+        - destLat
+        - destLng
+      properties:
+        originLat:
+          type: number
+        originLng:
+          type: number
+        destLat:
+          type: number
+        destLng:
+          type: number
+
+    DistanceResult:
+      type: object
+      required:
+        - distanceKm
+      properties:
+        distanceKm:
+          type: number
